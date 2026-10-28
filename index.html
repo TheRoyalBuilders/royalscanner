@@ -600,6 +600,42 @@ html[data-theme=dark] .tile,html[data-theme=dark] .mm{background:#161d36;color:#
 .hd2 .hbn2 b{font-weight:800;color:#fff;letter-spacing:-.4px}
 .hd2 .hbt{margin-top:4px;font:600 8.5px/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.3em;color:#67e8f9}
 </style>
+
+<style id="royal-theme-layout-fix-v1">
+/* Royal Builders Scanner: unified emerald / gold UI, no overlapping banner art */
+:root{--bg:#f7f4e9!important;--royal-green:#073c2c;--royal-gold:#d6aa42}
+html[data-theme="dark"]{--bg:#08281f!important}
+#main{background:var(--bg)!important}
+.hdw{isolation:isolate;z-index:6!important}
+header.hd2{background:linear-gradient(115deg,#052e22,#0b513a 60%,#063525)!important;border-bottom:2px solid var(--royal-gold)!important;box-shadow:0 5px 18px #002d2140!important;padding:18px 20px 16px!important;min-height:142px!important;overflow:hidden!important}
+header.hd2::before,header.hd2::after{display:none!important;content:none!important}
+header.hd2 .hr1{padding-right:0!important;position:relative!important;z-index:2!important;min-width:0!important}
+header.hd2 .hbi{width:54px!important;height:54px!important;object-fit:contain!important;border:1px solid var(--royal-gold)!important;flex:none!important}
+header.hd2 .hbw{min-width:0!important}
+header.hd2 .hbn2{font:700 clamp(15px,2.5vw,23px)/1.15 Georgia,serif!important;color:#f2cf75!important;white-space:normal!important}
+header.hd2 .hbn2 b{color:#ffe9a8!important}
+header.hd2 .hbn2 small{display:block!important;font-size:11px!important;letter-spacing:2px!important;color:#f3cc67!important}
+header.hd2 .hbt{color:#e5c26a!important;font-size:9px!important;letter-spacing:1.6px!important}
+header.hd2 .hr2{position:relative!important;z-index:2!important;margin-top:12px!important}
+header.hd2 .hact button{background:#064a35!important;border:1px solid #cba44c!important;color:#f6d67c!important}
+#main .scroll{background:var(--bg)!important}
+#t-home{padding-top:14px!important;padding-bottom:116px!important}
+#t-home .tiles{gap:12px!important}
+#t-home .tile{background:linear-gradient(160deg,#0e503b,#073324)!important;color:#f7e9c7!important;border:1px solid #b9903e!important;box-shadow:0 5px 14px #00291b25!important;border-radius:20px!important}
+#t-home .tile .ic{color:#e9c269!important}
+#t-home .tile.hot{background:linear-gradient(145deg,#f0ce77,#c39231)!important;color:#123b2a!important}
+#t-home .tile.hot .ic{color:#123b2a!important}
+#t-home h3,#t-home .row{color:#124a36!important}
+#t-home .sb{background:#e9dfc2!important;color:#184a37!important}
+#main .navFade{height:96px!important;background:linear-gradient(to top,var(--bg) 16%,transparent)!important;z-index:18!important}
+#nav{background:linear-gradient(130deg,#063b2a,#0a5039)!important;border:1px solid #b9903e!important;box-shadow:0 7px 22px #002b2060!important;z-index:22!important}
+#nav button{color:#e7d9ac!important}
+#nav button.on,#nav button.on span,#nav button.on .ic{color:#f6d16e!important}
+#nav button[data-tab=import] .ic{background:linear-gradient(145deg,#f3d889,#c5922b)!important;color:#0a3a2a!important;box-shadow:0 5px 16px #002b2055!important}
+#status.err{position:relative!important;z-index:2!important}
+@media(max-width:600px){header.hd2{min-height:138px!important;padding:16px 13px!important}header.hd2 .hbn2{font-size:16px!important}#t-home .tiles{grid-template-columns:repeat(2,minmax(0,1fr))!important}#t-home .tile{min-height:112px!important}}
+</style>
+
 <script src="fb.js" defer></script>
 <script>
 const APP_VER='2026-10-28-d';
