@@ -1346,7 +1346,9 @@ $('#pvMode').onclick=e=>{const b=e.target.closest('[data-pm]');if(b&&PV)openPrev
 async function pvPdf(share){const d=PV.d,o=PV.o,m=PV.mode;toast('Creating PDF...');
   const f=new File([await makePDF(d.pages,o?{...d,sheet:o}:m==='side'?{...d,side:true}:d)],safe(d.name)+(o?'-sheet':m==='side'?'-side':'')+'.pdf',{type:'application/pdf'});share?shareFiles([f],d.name):dl(f)}
 $('#pvBack').onclick=()=>openDoc(cur.id);
-$('#pvPrint').onclick=()=>PV.o?printSheet(PV.d,PV.o):PV.mode==='side'?printSide(PV.d):printDoc(PV.d);
+// Print control was removed from the UI; bind only if present.
+const pvPrintButton = document.getElementById('pvPrint');
+if (pvPrintButton) pvPrintButton.onclick=()=>PV.o?printSheet(PV.d,PV.o):PV.mode==='side'?printSide(PV.d):printDoc(PV.d);
 $('#pvShare').onclick=()=>pvPdf(1);$('#pvDl').onclick=()=>pvPdf(0);
 
 /* ---------- Firebase sync (login + Firestore) ---------- */
