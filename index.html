@@ -1440,10 +1440,13 @@ function pinShow(){AUM='pin';moveScene($('#splash'));{const em=localStorage.getI
   $('#auth').style.display='flex';$('#splash').classList.add('au');$('#auT').textContent='Enter your PIN';$('#auU').style.display='none';$('#auP2').style.display='none';
   const P=$('#auP');P.placeholder='PIN';P.setAttribute('inputmode','numeric');P.maxLength=6;P.value='';$('#auE').textContent='';$('#auGo').textContent='Unlock';$('#auF').textContent='Forgot PIN? Sign in with email';$('#auF').style.display='';P.focus()}
 async function gate(){
-  if(sessionStorage.getItem('swOk')){splashOut();return}
+  // Never trust a localStorage flag as proof of Firebase authentication.
+  sessionStorage.removeItem('swOk');
+  localStorage.removeItem('swSignedIn');
   localStorage.removeItem(PIN_KEY);
-  if(localStorage.getItem('swSignedIn')){unlocked();try{await rhFast()}catch(e){toast('Could not load documents: '+(e&&e.message||e),8000)}splashOut();return}
-  loginShow()}
+  localStorage.removeItem('swEmail');
+  loginShow();
+}
 let AUM='login';
 $('#auEye').onclick=()=>{const P=$('#auP'),s=P.type==='password';P.type=s?'text':'password';$('#eyeOn').style.display=s?'none':'';$('#eyeOff').style.display=s?'':'none'};
 function loginShow(){AUM='login';moveScene($('#splash'));$('#auWho').textContent='';
