@@ -771,7 +771,8 @@ html[data-theme=dark] #main .inp{background:#183b30!important;color:#f5f5ef!impo
 @media(max-width:420px){#main .hd2{padding:14px!important}#main .tile{min-height:106px!important}#main #nav{left:8px!important;right:8px!important}}
 </style>
 
-<script src="fb.js" defer></script>
+<script>addEventListener("error",function(e){if(e.filename&&/fb\.js/.test(e.filename))window.__fbE="fb.js chali nahi: "+e.message},true)</script>
+<script src="fb.js" defer onerror="window.__fbE='fb.js file server par nahi mili (404). Isay index.html ke saath upload karein'"></script>
 <script>
 const APP_VER='2026-10-29-a';
 const CLIENT_ID='682622042304-3iivfit3fccho5a7vpeu6jdj90kdkjl0.apps.googleusercontent.com';
@@ -1404,7 +1405,7 @@ $('#pvShare').onclick=()=>pvPdf(1);$('#pvDl').onclick=()=>pvPdf(0);
 
 /* ---------- Firebase sync (login + Firestore) ---------- */
 let syncing=false,again=false;
-const fbw=()=>window.FB?Promise.resolve(window.FB):new Promise((ok,no)=>{const t=setTimeout(()=>no(new Error('Sync module failed to load. Check your internet connection')),8000);addEventListener('fbready',()=>{clearTimeout(t);ok(window.FB)},{once:true})});
+const fbw=()=>window.FB?Promise.resolve(window.FB):new Promise((ok,no)=>{const t=setTimeout(()=>no(new Error('Sync module failed to load. '+(window.__fbE||'Check your internet connection'))),15000);addEventListener('fbready',()=>{clearTimeout(t);ok(window.FB)},{once:true})});
 function setStatus(s,err){const e=$('#status');e.textContent=s;e.classList.toggle('err',!!err)}
 function authMsg(e){const c=(e&&e.code)||'';
   if(/invalid-credential|wrong-password|user-not-found|invalid-email|invalid-login/.test(c))return 'Wrong email or password';
