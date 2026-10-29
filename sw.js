@@ -1,5 +1,5 @@
 /* Royal Scanner service worker. Har nayi upload par sirf VER badlein. */
-const VER = 'royal-scanner-2026-10-29-a';
+const VER = 'royal-scanner-2026-10-29-b';
 const CORE = [
   './', 'index.html', 'manifest.json', 'fb.js',
   'logo.png', 'r-mark.png', 'royal-icon.png',
