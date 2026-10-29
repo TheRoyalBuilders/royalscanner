@@ -498,6 +498,14 @@ html[data-theme] body .bwprev{display:flex;align-items:center;gap:10px;padding:8
 html[data-theme] body #prs .sheet>div,html[data-theme] body #prs>div{gap:8px}
 @media(max-width:360px){html[data-theme] body #main header.hd2 .hbn2{font-size:15.5px!important}}
 </style>
+<style id="royal-pdfv">
+#pdfv:not(.hidden){display:flex;flex-direction:column}
+#pdfv header h1{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#pdfv header button{min-width:40px;height:40px;font-size:22px;font-weight:700;line-height:1}
+.pxb{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;background:#59605d;padding:10px 0 calc(env(safe-area-inset-bottom,0px) + 16px)}
+.pxw{margin:0 auto;width:calc(100% - 20px)}
+.pxp{background:#fff;margin:0 0 10px;box-shadow:0 2px 10px rgba(0,0,0,.4);overflow:hidden}
+</style>
 </head>
 <body>
 
@@ -545,7 +553,7 @@ html[data-theme] body #prs .sheet>div,html[data-theme] body #prs>div{gap:8px}
     <button class="big" id="btnRestore" data-ic="restore">Restore<small>Load documents from a backup file</small></button>
     <button class="big" id="btnImport" data-ic="restore">Import from Google Drive<small>One time: bring your old Drive scans here</small></button>
     <button class="big" id="btnOut" data-ic="out">Logout</button></div>
-  <div class="scroll tab hidden" id="t-pdf"><h3>PDF Tools</h3><div class="tiles"><button class="tile" data-tool="merge" data-t="Merge PDF" data-ic="docs">Merge PDF</button><button class="tile" data-tool="split" data-t="Split PDF" data-ic="tools">Split PDF</button><button class="tile" data-tool="compress" data-t="Compress PDF" data-ic="backup">Compress PDF</button><button class="tile" data-go="gal" data-ic="img">Images to PDF</button><button class="tile" data-tool="toimg" data-t="PDF to image" data-ic="img">PDF to image</button><button class="tile" data-tool="addpw" data-t="Add Password" data-ic="user">Add Password</button><button class="tile" data-tool="rempw" data-t="Remove Password" data-ic="user">Remove Password</button><button class="tile" data-tool="rotate" data-t="Rotate PDF" data-ic="retake">Rotate PDF</button><button class="tile" data-tool="reorder" data-t="Reorder Pages" data-ic="adj">Reorder Pages</button></div><h3>Convert</h3><div class="tiles"><button class="tile" data-tool="p2word" data-t="PDF to Word" data-ic="docs">PDF to Word</button><button class="tile" data-tool="p2xls" data-t="PDF to Excel" data-ic="tools">PDF to Excel</button><button class="tile" data-tool="p2ppt" data-t="PDF to PowerPoint" data-ic="img">PDF to PowerPoint</button><button class="tile" data-tool="p2txt" data-t="PDF to Text" data-ic="edit">PDF to Text</button><button class="tile" data-tool="w2pdf" data-t="Word to PDF" data-ic="docs">Word to PDF</button><button class="tile" data-tool="x2pdf" data-t="Excel to PDF" data-ic="tools">Excel to PDF</button></div></div>
+  <div class="scroll tab hidden" id="t-pdf"><h3>PDF Tools</h3><div class="tiles"><button class="tile" data-tool="merge" data-t="Merge PDF" data-ic="docs">Merge PDF</button><button class="tile" data-tool="split" data-t="Split PDF" data-ic="tools">Split PDF</button><button class="tile" id="tOpenPdf" data-ic="docs">Open PDF</button><button class="tile" data-tool="compress" data-t="Compress PDF" data-ic="backup">Compress PDF</button><button class="tile" data-go="gal" data-ic="img">Images to PDF</button><button class="tile" data-tool="toimg" data-t="PDF to image" data-ic="img">PDF to image</button><button class="tile" data-tool="addpw" data-t="Add Password" data-ic="user">Add Password</button><button class="tile" data-tool="rempw" data-t="Remove Password" data-ic="user">Remove Password</button><button class="tile" data-tool="rotate" data-t="Rotate PDF" data-ic="retake">Rotate PDF</button><button class="tile" data-tool="reorder" data-t="Reorder Pages" data-ic="adj">Reorder Pages</button></div><h3>Convert</h3><div class="tiles"><button class="tile" data-tool="p2word" data-t="PDF to Word" data-ic="docs">PDF to Word</button><button class="tile" data-tool="p2xls" data-t="PDF to Excel" data-ic="tools">PDF to Excel</button><button class="tile" data-tool="p2ppt" data-t="PDF to PowerPoint" data-ic="img">PDF to PowerPoint</button><button class="tile" data-tool="p2txt" data-t="PDF to Text" data-ic="edit">PDF to Text</button><button class="tile" data-tool="w2pdf" data-t="Word to PDF" data-ic="docs">Word to PDF</button><button class="tile" data-tool="x2pdf" data-t="Excel to PDF" data-ic="tools">Excel to PDF</button></div></div>
   <div id="selBar" class="selbar hidden"><button id="selCancel">Cancel</button><button id="selAll">Select all</button><button class="rdb" id="selDel">Delete (0)</button></div>
   <div class="navFade"></div><nav id="nav"><button data-tab="home" data-ic="home" class="on" aria-label="Home"><span>Home</span></button><button data-tab="docs" data-ic="docs" aria-label="All docs"><span>Documents</span></button><button data-tab="import" data-ic="scan" aria-label="Import"><span>Scan</span></button><button data-tab="tools" data-ic="tools" aria-label="Tools"><span>History</span></button><button data-tab="me" data-ic="user" aria-label="Me"><span>Settings</span></button></nav>
   <div class="rfoot"><b>The Royal Builders</b><i>◆</i><span>Contact: 0300-8659322</span><em class="dev">Developed by <b>SW Syvox</b></em></div>
@@ -602,6 +610,9 @@ html[data-theme] body #prs .sheet>div,html[data-theme] body #prs>div{gap:8px}
 <div id="rev" class="screen hidden"><header><button id="rvBack">✕</button><h1 id="rvT">Review</h1></header><div id="rvPager"></div><div class="hint" id="rvHint"></div><div class="tools"><button id="rvEdit" data-ic="adj">Edit</button><button id="rvDel" data-ic="trash">Remove</button><button id="rvCam" data-ic="cam">Camera</button><button id="rvGal" data-ic="img">Gallery</button><button id="rvFile" data-ic="folder">Files</button></div><div class="bar"><button id="rvSave" class="ok">Save</button></div></div>
 <div id="prev" class="screen hidden"><div class="zc"><button id="zIn" aria-label="Zoom in">+</button><button id="zOut" aria-label="Zoom out">−</button><button id="zFit" style="font-size:12px">Fit</button></div><header><button id="pvBack">←</button><h1 id="pvT"></h1></header><div id="pvMode" class="seg hidden" style="margin:6px 12px 0"><button data-pm="side">Side by side</button><button data-pm="duplex">Front &amp; back</button><button data-pm="sheet">8 copies</button></div><div id="pvCap" class="hint hidden"></div><div class="scroll" id="pvBox" style="background:#e2e8f0;padding-top:12px"></div><div class="bar"><button id="pvShare">Share PDF</button><button id="pvDl">Download</button></div></div>
 <div id="bin" class="screen hidden"><header><button id="bBack">←</button><h1>Recycle bin</h1><button id="bEmpty">Empty</button></header><div class="scroll"><p class="hint" id="binHint"></p><div id="binList"></div></div></div>
+<div id="pdfv" class="screen hidden"><header><button id="pxBack" data-ic="back" aria-label="Close"></button><h1 id="pxT">PDF</h1><button id="pxZ1" aria-label="Zoom out">−</button><button id="pxZ2" aria-label="Zoom in">+</button><button id="pxSave" data-ic="backup" aria-label="Save"></button></header><div id="pxB" class="pxb"></div></div>
+<div id="pxc" class="sheet hidden"><div><b>Save this PDF in the app?</b><p class="hint" style="margin:0">If you don't save it, it is removed when you close it.</p><button data-k="y" class="pri">Save in app</button><button data-k="n">Don't save</button><button data-k="x">Keep viewing</button></div></div>
+<input type="file" id="inOpenPdf" accept="application/pdf,.pdf" hidden>
 <div id="bwp" class="sheet hidden"><div><b>Share with watermark?</b><p class="hint" style="margin:0">This line is added at the bottom of every page:</p><div class="bwprev"><img src="r-mark.png" alt=""><div><b>Shared by The Royal Builders</b><span>0300-8659322</span></div></div><button data-k="y" class="pri">With watermark</button><button data-k="n">Without watermark</button><button data-k="x">Cancel</button></div></div>
 <div id="prs" class="sheet hidden"><div><b>My account</b><small id="prsEm" class="hint" style="margin:-6px 0 0"></small><button data-p="edit">Edit profile</button><button data-p="pw">Change password</button><div id="pwBox" class="hidden" style="display:flex;flex-direction:column;gap:8px"><input class="inp" id="pwC" type="password" placeholder="Current password" autocomplete="current-password"><input class="inp" id="pwN" type="password" placeholder="New password (min 6)" autocomplete="new-password"><input class="inp" id="pwN2" type="password" placeholder="Confirm new password" autocomplete="new-password"><button class="pri" data-p="pwgo">Update password</button></div><button data-p="reset">Send reset link to my email</button><p class="hint" id="prsMsg" style="margin:0;min-height:16px"></p><button data-p="out" class="rdb">Logout</button><button data-p="x">Close</button></div></div>
 <div id="dlg" class="sheet hidden"><div><b id="dlgT"></b><p id="dlgM"></p><button id="dlgOk" class="rdb">Delete</button><button id="dlgNo">Cancel</button></div></div>
@@ -781,7 +792,7 @@ html[data-theme=dark] #main .inp{background:#183b30!important;color:#f5f5ef!impo
 <script>addEventListener("error",function(e){if(e.filename&&/fb\.js/.test(e.filename))window.__fbE="fb.js chali nahi: "+e.message},true)</script>
 <script src="fb.js" defer onerror="window.__fbE='fb.js file server par nahi mili (404). Isay index.html ke saath upload karein'"></script>
 <script>
-const APP_VER='2026-10-29-c';
+const APP_VER='2026-10-29-d';
 const CLIENT_ID='682622042304-3iivfit3fccho5a7vpeu6jdj90kdkjl0.apps.googleusercontent.com';
 const SCOPE='https://www.googleapis.com/auth/drive.file openid email';
 const $=s=>document.querySelector(s);
@@ -1525,6 +1536,34 @@ $('#btnOut').onclick=async()=>{
   localStorage.removeItem('swSignedIn');localStorage.removeItem(PIN_KEY);localStorage.removeItem('swEmail');sessionStorage.removeItem('swOk');
   try{if(window.FB)await Promise.race([FB.signOut(),new Promise(r=>setTimeout(r,2500))])}catch(e){}
   location.reload()};
+
+/* ---------- Royal: PDF viewer (open, read, save or discard) ---------- */
+(()=>{const B=$('#pxB');let PX=null,PXR=null;const LIB='https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/';
+const need=async()=>{if(!window.pdfjsLib)await new Promise((ok,no)=>{const e=document.createElement('script');e.src=LIB+'pdf.min.js';e.onload=ok;e.onerror=()=>no(new Error('PDF viewer needs internet the first time'));document.head.appendChild(e)});pdfjsLib.GlobalWorkerOptions.workerSrc=LIB+'pdf.worker.min.js'};
+async function load(f){await need();let pw;for(;;){try{return await pdfjsLib.getDocument({data:await f.arrayBuffer(),password:pw}).promise}catch(e){if(e&&e.name==='PasswordException'){pw=prompt(e.code===2?'Wrong password. Try again:':'This PDF is protected. Enter its password:');if(pw===null)throw new Error('Cancelled')}else throw e}}}
+async function rend(d){const z=String(PX.z);if(d.dataset.r===z)return;d.dataset.r=z;const pg=await PX.doc.getPage(+d.dataset.i),v0=pg.getViewport({scale:1}),cw=d.clientWidth||B.clientWidth,v=pg.getViewport({scale:Math.min(3.5,cw*(devicePixelRatio||1)/v0.width)}),c=document.createElement('canvas');c.width=v.width|0;c.height=v.height|0;c.style.cssText='width:100%;height:100%;display:block';d.style.aspectRatio=v0.width+'/'+v0.height;await pg.render({canvasContext:c.getContext('2d'),viewport:v}).promise;d.replaceChildren(c)}
+async function open(f){try{toast('Opening PDF...');const doc=await load(f),p1=await doc.getPage(1),v=p1.getViewport({scale:1});
+  PX={f,doc,name:(f.name||'PDF').replace(/\.pdf$/i,'')||'PDF',saved:false,z:1};PX.io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)rend(e.target)}),{root:B,rootMargin:'700px 0px'});
+  $('#pxT').textContent=PX.name;B.innerHTML='';const w=document.createElement('div');w.className='pxw';B.appendChild(w);PX.w=w;
+  for(let i=1;i<=doc.numPages;i++){const d=document.createElement('div');d.className='pxp';d.dataset.i=i;d.style.aspectRatio=v.width+'/'+v.height;w.appendChild(d);PX.io.observe(d)}
+  $('#pdfv').classList.remove('hidden')}catch(e){PX=null;if(!e||e.message!=='Cancelled')toast('Cannot open PDF: '+((e&&e.message)||e))}}
+function zoom(k){if(!PX)return;PX.z=Math.max(1,Math.min(3,+(PX.z+k).toFixed(2)));PX.w.style.width='calc('+PX.z*100+'% - 20px)';PX.w.querySelectorAll('.pxp').forEach(d=>{PX.io.unobserve(d);PX.io.observe(d)})}
+$('#pxZ1').onclick=()=>zoom(-.5);$('#pxZ2').onclick=()=>zoom(.5);
+async function save(){if(!PX)return;if(PX.saved){toast('Already saved');return}toast('Saving...');const bl=await expandPdf([PX.f]);if(!bl.length)throw new Error('No pages');
+  await dbPut('docs',{id:uid(),name:PX.name,created:Date.now(),pages:bl.map(b=>({id:uid(),blob:b}))});PX.saved=true;toast('Saved ✓');autoSync()}
+function shut(){const s=PX&&PX.saved;try{PX.io.disconnect();PX.doc.destroy()}catch(e){}PX=null;B.innerHTML='';$('#pdfv').classList.add('hidden');if(s&&!$('#main').classList.contains('hidden'))renderHome()}
+const ask3=()=>new Promise(r=>{PXR=r;$('#pxc').classList.remove('hidden')});
+$('#pxc').onclick=e=>{const k=e.target.dataset.k;if(!k&&e.target.id!=='pxc')return;$('#pxc').classList.add('hidden');const r=PXR;PXR=null;if(r)r(k||'x')};
+$('#pxSave').onclick=()=>save().catch(e=>toast('Save failed: '+((e&&e.message)||e)));
+$('#pxBack').onclick=async()=>{if(!PX)return;if(!PX.saved){const r=await ask3();if(r==='x')return;if(r==='y'){try{await save()}catch(e){toast('Save failed: '+((e&&e.message)||e));return}}}shut()};
+$('#inOpenPdf').onchange=e=>{const f=e.target.files[0];e.target.value='';if(f)open(f)};
+document.addEventListener('click',e=>{if(e.target.closest('#tOpenPdf'))$('#inOpenPdf').click()});
+window.openPdfViewer=open;
+const ready=()=>new Promise(r=>{const t=setInterval(()=>{if(!document.getElementById('splash')){clearInterval(t);r()}},400)});
+(async()=>{if(!/[?&]shared=1/.test(location.search))return;history.replaceState(null,'',location.pathname);await ready();
+  try{const c=await caches.open('royal-share'),r=await c.match('shared-pdf');if(!r)return;const b=await r.blob(),nm=decodeURIComponent(r.headers.get('X-Name')||'shared.pdf');await c.delete('shared-pdf');open(new File([b],nm,{type:'application/pdf'}))}catch(e){}})();
+if('launchQueue' in window)launchQueue.setConsumer(async p=>{if(!p.files||!p.files.length)return;const f=await p.files[0].getFile();await ready();open(f)});
+})();
 
 /* ---------- Royal: brand watermark, profile menu, password ---------- */
 const BW_PH='0300-8659322';let BWR=null,RIMG=null;

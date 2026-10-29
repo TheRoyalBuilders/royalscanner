@@ -31,5 +31,31 @@
       "type": "image/png",
       "purpose": "maskable"
     }
+  ],
+  "share_target": {
+    "action": "./index.html?share-target=1",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "files": [
+        {
+          "name": "pdf",
+          "accept": [
+            "application/pdf",
+            ".pdf"
+          ]
+        }
+      ]
+    }
+  },
+  "file_handlers": [
+    {
+      "action": "./index.html",
+      "accept": {
+        "application/pdf": [
+          ".pdf"
+        ]
+      }
+    }
   ]
 }
